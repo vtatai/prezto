@@ -11,3 +11,72 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+alias ag='alias | grep'
+
+export JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
+export JAVA7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+export JAVA_HOME=$JAVA7_HOME
+export GRAILS_HOME=~/tools/grails
+export MAVEN_HOME=~/tools/maven
+export M3_HOME=/usr/local/Cellar/maven/3.3.3/
+export MAVEN_OPTS="-Xmx3048m -Xss128m -XX:MaxPermSize=1512m -XX:+CMSClassUnloadingEnabled"
+export ANT_HOME=~/tools/ant
+export AKKA_HOME=~/tools/akka
+export ROO_HOME=~/tools/spring-roo
+export GRADLE_HOME=~/tools/gradle
+export ACTIVATOR_HOME=~/tools/activator
+export HORNETQ_HOME=~/tools/hornetq
+#export CATALINA_HOME=~/tools/tomcat
+export VM_TOOLS_HOME=~/vocado/tools
+
+export SPRING_HOME=~/tools/spring
+
+export PATH=$PATH:$JAVA_HOME/bin:$GRAILS_HOME/bin:$ANT_HOME/bin:$AKKA_HOME/bin:$ROO_HOME/bin:$GRADLE_HOME/bin:$ACTIVATOR_HOME:$SPRING_HOME/bin
+export PATH=~/bin:/usr/local/bin:$PATH
+
+# Setting editor for git / svn
+export VISUAL=vim
+export EDITOR=vim
+
+setopt rmstarsilent
+
+# Speed up git autocomplete
+__git_files () { 
+  _wanted files expl 'local files' _files     
+}
+
+PATH=$MAVEN_HOME/bin:$PATH:$HOME/.rvm/bin:~/tools/liquibase:~/tools/play
+
+# XCode 5 hides these away:
+export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
+export CPLUS_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
+export LIBRARY_PATH="$(xcrun --show-sdk-path)/usr/lib:$(xcrun --show-sdk-path)/usr/lib/system:$LIBRARY_PATH" 
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+bindkey '^E' end-of-line
+bindkey '^E' vi-end-of-line
+bindkey '^A' beginning-of-line
+bindkey '^A' vi-beginning-of-line
+
+alias killall-tomcat='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\([0-9]*\) .*/\1/g'' | xargs kill'
+alias killall-tomcat9='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\([0-9]*\) .*/\1/g'' | xargs kill -9'
+
+# Makes the ^ symbol work again for Git
+setopt NO_NOMATCH
+
+# jEnv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# top
+alias top='top -o cpu'
+
+alias carbon='python /opt/graphite/bin/carbon-cache.py'
+alias graphite-web='python /opt/graphite/bin/run-graphite-devel-server.py --port 8880 /opt/graphite'
+
+# Fitbit aliases
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

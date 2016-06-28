@@ -28,7 +28,6 @@ fi >&2
 =======
 # Print a random, hopefully interesting, adage.
 if (( $+commands[fortune] )); then
-<<<<<<< Updated upstream
   if [[ -t 0 || -t 1 ]]; then
     fortune -s
     print

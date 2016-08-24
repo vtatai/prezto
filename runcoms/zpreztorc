@@ -42,8 +42,11 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'osx' \
   'syntax-highlighting' \
+  'history-substring-search' \
   'tmux' \
-  'archive'
+  'homebrew' \
+  'ssh' \
+  'autosuggestions'
 
 #
 # Autosuggestions

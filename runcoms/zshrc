@@ -13,21 +13,24 @@ fi
 # Customize to your needs...
 alias ag='alias | grep'
 
-export JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
-export JAVA7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
-export JAVA_HOME=$JAVA7_HOME
-export GRAILS_HOME=~/tools/grails
-export MAVEN_HOME=~/tools/maven
-export M3_HOME=/usr/local/Cellar/maven/3.3.3/
-export MAVEN_OPTS="-Xmx3048m -Xss128m -XX:MaxPermSize=1512m -XX:+CMSClassUnloadingEnabled"
-export ANT_HOME=~/tools/ant
-export AKKA_HOME=~/tools/akka
-export ROO_HOME=~/tools/spring-roo
-export GRADLE_HOME=~/tools/gradle
-export ACTIVATOR_HOME=~/tools/activator
-export HORNETQ_HOME=~/tools/hornetq
-#export CATALINA_HOME=~/tools/tomcat
-export VM_TOOLS_HOME=~/vocado/tools
+if [[ "$OSX" == "1" ]]
+then
+  export JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
+  export JAVA7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+  export JAVA_HOME=$JAVA8_HOME
+  export M3_HOME=/usr/local/Cellar/maven/3.3.3/
+  export ANT_HOME=~/tools/ant
+  export AKKA_HOME=~/tools/akka
+  export ROO_HOME=~/tools/spring-roo
+  export GRADLE_HOME=~/tools/gradle
+  export ACTIVATOR_HOME=~/tools/activator
+  export HORNETQ_HOME=~/tools/hornetq
+  #export CATALINA_HOME=~/tools/tomcat
+  export VM_TOOLS_HOME=~/vocado/tools
+  export GRAILS_HOME=~/tools/grails
+  export MAVEN_HOME=~/tools/maven
+fi
+export MAVEN_OPTS="-Xmx3048m -Xss128m -XX:MaxMetaspaceSize=1512m -XX:+CMSClassUnloadingEnabled"
 
 export SPRING_HOME=~/tools/spring
 
@@ -48,9 +51,12 @@ __git_files () {
 PATH=$MAVEN_HOME/bin:$PATH:$HOME/.rvm/bin:~/tools/liquibase:~/tools/play
 
 # XCode 5 hides these away:
-export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
-export CPLUS_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
-export LIBRARY_PATH="$(xcrun --show-sdk-path)/usr/lib:$(xcrun --show-sdk-path)/usr/lib/system:$LIBRARY_PATH" 
+if [[ "$OSX" == "1" ]]
+then
+  export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
+  export CPLUS_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
+  export LIBRARY_PATH="$(xcrun --show-sdk-path)/usr/lib:$(xcrun --show-sdk-path)/usr/lib/system:$LIBRARY_PATH" 
+fi
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -69,14 +75,18 @@ alias killall-tomcat9='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\(
 setopt NO_NOMATCH
 
 # jEnv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+if [[ "$OSX" == "1" ]]
+then
+  export PATH="$HOME/.jenv/bin:$PATH" 
+  eval "$(jenv init -)"
+fi
 
 # top
 alias top='top -o cpu'
 
 alias carbon='python /opt/graphite/bin/carbon-cache.py'
 alias graphite-web='python /opt/graphite/bin/run-graphite-devel-server.py --port 8880 /opt/graphite'
+alias ppjson='python -m json.tool'
 
 # Fitbit aliases
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

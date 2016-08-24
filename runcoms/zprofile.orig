@@ -76,4 +76,7 @@ fi
 TMPPREFIX="${TMPDIR%/}/zsh"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
->>>>>>> Customizations
+# Ubuntu make installation of Ubuntu Make binary symlink
+PATH=/home/alex/.local/share/umake/bin:$PATH
+
+>>>>>>> Minor customizations

@@ -95,4 +95,3 @@ export THRIFT_CLI_PATH=~/src/fit/weightsite/sortinghat/thrifts/server/src/main/t
 
 
 export PATH=/Users/vtatai/.local/bin/luna-studio:$PATH
-

@@ -4,6 +4,7 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+#zmodload zsh/zprof
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -34,8 +35,6 @@ export MAVEN_OPTS="-Xmx3048m -Xss128m -XX:MaxMetaspaceSize=1512m -XX:+CMSClassUn
 
 export SPRING_HOME=~/tools/spring
 
-export PATH=$PATH:$JAVA_HOME/bin:$GRAILS_HOME/bin:$ANT_HOME/bin:$AKKA_HOME/bin:$ROO_HOME/bin:$GRADLE_HOME/bin:$ACTIVATOR_HOME:$SPRING_HOME/bin:~/.local/bin:/usr/local/opt/percona-server@5.6/bin:/usr/local/opt/mysql@5.6/bin
-export PATH=~/bin:/usr/local/bin:$PATH
 
 # Setting editor for git / svn
 export VISUAL=vim
@@ -89,9 +88,30 @@ alias ppjson='python -m json.tool'
 # Fitbit aliases
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 source /etc/bashrc_fitbit
-export PATH=~/src/fit/cosmos/tools:$HOME/.local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 export THRIFT_CLI_PATH=~/src/fit/weightsite/sortinghat/thrifts/server/src/main/thrift:~/src/fit/weightsite/core/thrift/rpc/thrifts/src/main/thrift:~/src/fit/weightsite/microservice-example/zoo/thrifts/server/src/main/thrift:~/src/fit/weightsite/microservice-example/common/thrifts/src/main/thrift
+export AWS_ROLE=Experimentation_Platform_Team 
+export AWS_ACCOUNT=304992127519
 
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
-export PATH=/Users/vtatai/.local/bin/luna-studio:$PATH
+# NVM
+# Disabled since it slows down significantly the shell
+#export NVM_DIR="$HOME/.nvm"
+#. "/usr/local/opt/nvm/nvm.sh"
+#zprof
+
+# Python virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/src
+source /usr/local/bin/virtualenvwrapper.sh
+
+# BEGIN ANSIBLE MANAGED BLOCK
+XCODE="$(xcode-select -p 2>/dev/null || echo /Applications/Xcode.app/Contents/Developer)"
+JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"; export JAVA_HOME
+PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/Library/Python/3.7/bin:${HOME}/Library/Python/2.7/bin:${JAVA_HOME}/bin:/usr/local/gnu/bin:/usr/local/bin:/usr/local/sbin:${PATH}"; export PATH
+MANPATH="/usr/local/gnu/man:/usr/local/share/man:/usr/share/man:${XCODE}/Toolchains/XcodeDefault.xctoolchain/usr/share/man:${XCODE}/usr/share/man"; export MANPATH
+HOMEBREW_CASK_OPTS="--appdir=/Applications"; export HOMEBREW_CASK_OPTS
+HOMEBREW_NO_ENV_FILTERING=1; export HOMEBREW_NO_ENV_FILTERING
+HOMEBREW_NO_AUTO_UPDATE=1; export HOMEBREW_NO_AUTO_UPDATE
+HOMEBREW_NO_UPDATE_CLEANUP=1; export HOMEBREW_NO_UPDATE_CLEANUP
+# END ANSIBLE MANAGED BLOCK

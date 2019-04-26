@@ -17,8 +17,7 @@ alias aliasgrep='alias | grep'
 if [[ "$OSX" == "1" ]]
 then
   export JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
-  export JAVA7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
-  export JAVA_HOME=$JAVA8_HOME
+# export JAVA_HOME=$JAVA8_HOME
   export M3_HOME=/usr/local/Cellar/maven/3.3.3/
   export ANT_HOME=~/tools/ant
   export AKKA_HOME=~/tools/akka
@@ -91,6 +90,7 @@ source /etc/bashrc_fitbit
 export THRIFT_CLI_PATH=~/src/fit/weightsite/sortinghat/thrifts/server/src/main/thrift:~/src/fit/weightsite/core/thrift/rpc/thrifts/src/main/thrift:~/src/fit/weightsite/microservice-example/zoo/thrifts/server/src/main/thrift:~/src/fit/weightsite/microservice-example/common/thrifts/src/main/thrift
 export AWS_ROLE=Experimentation_Platform_Team 
 export AWS_ACCOUNT=304992127519
+export VAULT_ADDR=https://gcp-vault.site-ops.fitbit.com:8200
 
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
@@ -105,13 +105,20 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/src
 source /usr/local/bin/virtualenvwrapper.sh
 
+# NVM settings
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
 # BEGIN ANSIBLE MANAGED BLOCK
 XCODE="$(xcode-select -p 2>/dev/null || echo /Applications/Xcode.app/Contents/Developer)"
-JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"; export JAVA_HOME
-PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/Library/Python/3.7/bin:${HOME}/Library/Python/2.7/bin:${JAVA_HOME}/bin:/usr/local/gnu/bin:/usr/local/bin:/usr/local/sbin:${PATH}"; export PATH
+# JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"; export JAVA_HOME
+# PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/Library/Python/3.7/bin:${HOME}/Library/Python/2.7/bin:${JAVA_HOME}/bin:/usr/local/gnu/bin:/usr/local/bin:/usr/local/sbin:${PATH}"; export PATH
 MANPATH="/usr/local/gnu/man:/usr/local/share/man:/usr/share/man:${XCODE}/Toolchains/XcodeDefault.xctoolchain/usr/share/man:${XCODE}/usr/share/man"; export MANPATH
 HOMEBREW_CASK_OPTS="--appdir=/Applications"; export HOMEBREW_CASK_OPTS
 HOMEBREW_NO_ENV_FILTERING=1; export HOMEBREW_NO_ENV_FILTERING
 HOMEBREW_NO_AUTO_UPDATE=1; export HOMEBREW_NO_AUTO_UPDATE
 HOMEBREW_NO_UPDATE_CLEANUP=1; export HOMEBREW_NO_UPDATE_CLEANUP
 # END ANSIBLE MANAGED BLOCK
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

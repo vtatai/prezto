@@ -14,22 +14,6 @@ fi
 # Customize to your needs...
 alias aliasgrep='alias | grep'
 
-if [[ "$OSX" == "1" ]]
-then
-  export JAVA8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
-# export JAVA_HOME=$JAVA8_HOME
-  export M3_HOME=/usr/local/Cellar/maven/3.3.3/
-  export ANT_HOME=~/tools/ant
-  export AKKA_HOME=~/tools/akka
-  export ROO_HOME=~/tools/spring-roo
-  export GRADLE_HOME=~/tools/gradle
-  export ACTIVATOR_HOME=~/tools/activator
-  export HORNETQ_HOME=~/tools/hornetq
-  #export CATALINA_HOME=~/tools/tomcat
-  export VM_TOOLS_HOME=~/vocado/tools
-  export GRAILS_HOME=~/tools/grails
-  export MAVEN_HOME=~/tools/maven
-fi
 export MAVEN_OPTS="-Xmx3048m -Xss128m -XX:MaxMetaspaceSize=1512m -XX:+CMSClassUnloadingEnabled"
 
 export SPRING_HOME=~/tools/spring
@@ -46,14 +30,6 @@ __git_files () {
   _wanted files expl 'local files' _files     
 }
 
-# XCode 5 hides these away:
-if [[ "$OSX" == "1" ]]
-then
-  export C_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
-  export CPLUS_INCLUDE_PATH="$(xcrun --show-sdk-path)/usr/include"
-  export LIBRARY_PATH="$(xcrun --show-sdk-path)/usr/lib:$(xcrun --show-sdk-path)/usr/lib/system:$LIBRARY_PATH" 
-fi
-
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 bindkey '^R' history-incremental-pattern-search-backward
@@ -64,6 +40,7 @@ bindkey '^E' vi-end-of-line
 bindkey '^A' beginning-of-line
 bindkey '^A' vi-beginning-of-line
 
+alias vimr='vimr -n'
 alias killall-tomcat='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\([0-9]*\) .*/\1/g'' | xargs kill'
 alias killall-tomcat9='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\([0-9]*\) .*/\1/g'' | xargs kill -9'
 
@@ -71,11 +48,7 @@ alias killall-tomcat9='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\(
 setopt NO_NOMATCH
 
 # jEnv
-if [[ "$OSX" == "1" ]]
-then
-  export PATH="$HOME/.jenv/bin:$PATH" 
-  eval "$(jenv init -)"
-fi
+eval "$(jenv init -)"
 
 # top
 alias top='top -o cpu'
@@ -92,33 +65,25 @@ export AWS_ROLE=Experimentation_Platform_Team
 export AWS_ACCOUNT=304992127519
 export VAULT_ADDR=https://gcp-vault.site-ops.fitbit.com:8200
 
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
-
-# NVM
-# Disabled since it slows down significantly the shell
-#export NVM_DIR="$HOME/.nvm"
-#. "/usr/local/opt/nvm/nvm.sh"
-#zprof
-
 # Python virtualenvwrapper
+# This slows down the shell, but leaving it on
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/src
 source /usr/local/bin/virtualenvwrapper.sh
 
 # NVM settings
+# These are commented out since they are very slow on shel startup
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # BEGIN ANSIBLE MANAGED BLOCK
 XCODE="$(xcode-select -p 2>/dev/null || echo /Applications/Xcode.app/Contents/Developer)"
-# JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"; export JAVA_HOME
-# PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/Library/Python/3.7/bin:${HOME}/Library/Python/2.7/bin:${JAVA_HOME}/bin:/usr/local/gnu/bin:/usr/local/bin:/usr/local/sbin:${PATH}"; export PATH
+JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"; export JAVA_HOME
+PATH="/usr/local/opt/ruby/bin:${HOME}/bin:${HOME}/.local/bin:${HOME}/Library/Python/3.7/bin:${HOME}/Library/Python/2.7/bin:${JAVA_HOME}/bin:/usr/local/gnu/bin:/usr/local/bin:/usr/local/sbin:${PATH}"; export PATH
 MANPATH="/usr/local/gnu/man:/usr/local/share/man:/usr/share/man:${XCODE}/Toolchains/XcodeDefault.xctoolchain/usr/share/man:${XCODE}/usr/share/man"; export MANPATH
 HOMEBREW_CASK_OPTS="--appdir=/Applications"; export HOMEBREW_CASK_OPTS
 HOMEBREW_NO_ENV_FILTERING=1; export HOMEBREW_NO_ENV_FILTERING
 HOMEBREW_NO_AUTO_UPDATE=1; export HOMEBREW_NO_AUTO_UPDATE
 HOMEBREW_NO_UPDATE_CLEANUP=1; export HOMEBREW_NO_UPDATE_CLEANUP
 # END ANSIBLE MANAGED BLOCK
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

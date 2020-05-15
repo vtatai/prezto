@@ -48,28 +48,20 @@ alias killall-tomcat9='ps axu | grep [t]omcat | grep [j]ava | sed ''s/[a-z]* *\(
 setopt NO_NOMATCH
 
 # jEnv
-eval "$(jenv init -)"
+# eval "$(jenv init -)"
 
 # top
 alias top='top -o cpu'
 
-alias carbon='python /opt/graphite/bin/carbon-cache.py'
-alias graphite-web='python /opt/graphite/bin/run-graphite-devel-server.py --port 8880 /opt/graphite'
 alias ppjson='python -m json.tool'
-
-# Fitbit aliases
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-source /etc/bashrc_fitbit
-export THRIFT_CLI_PATH=~/src/fit/weightsite/sortinghat/thrifts/server/src/main/thrift:~/src/fit/weightsite/core/thrift/rpc/thrifts/src/main/thrift:~/src/fit/weightsite/microservice-example/zoo/thrifts/server/src/main/thrift:~/src/fit/weightsite/microservice-example/common/thrifts/src/main/thrift
-export AWS_ROLE=Experimentation_Platform_Team 
-export AWS_ACCOUNT=304992127519
-export VAULT_ADDR=https://gcp-vault.site-ops.fitbit.com:8200
 
 # Python virtualenvwrapper
 # This slows down the shell, but leaving it on
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/Cellar/python/3.7.7/Frameworks/Python.framework/Versions/3.7/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/src
 source /usr/local/bin/virtualenvwrapper.sh
+
+export PROJECT_HOME=$HOME/src
 
 # NVM settings
 # These are commented out since they are very slow on shel startup
@@ -77,13 +69,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# BEGIN ANSIBLE MANAGED BLOCK
-XCODE="$(xcode-select -p 2>/dev/null || echo /Applications/Xcode.app/Contents/Developer)"
-JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"; export JAVA_HOME
-PATH="/usr/local/opt/ruby/bin:${HOME}/bin:${HOME}/.local/bin:${HOME}/Library/Python/3.7/bin:${HOME}/Library/Python/2.7/bin:${JAVA_HOME}/bin:/usr/local/gnu/bin:/usr/local/bin:/usr/local/sbin:${PATH}"; export PATH
-MANPATH="/usr/local/gnu/man:/usr/local/share/man:/usr/share/man:${XCODE}/Toolchains/XcodeDefault.xctoolchain/usr/share/man:${XCODE}/usr/share/man"; export MANPATH
-HOMEBREW_CASK_OPTS="--appdir=/Applications"; export HOMEBREW_CASK_OPTS
-HOMEBREW_NO_ENV_FILTERING=1; export HOMEBREW_NO_ENV_FILTERING
-HOMEBREW_NO_AUTO_UPDATE=1; export HOMEBREW_NO_AUTO_UPDATE
-HOMEBREW_NO_UPDATE_CLEANUP=1; export HOMEBREW_NO_UPDATE_CLEANUP
-# END ANSIBLE MANAGED BLOCK
+export PATH=$PATH:$(go env GOPATH)/bin
+
+source ~/.zshrc_local

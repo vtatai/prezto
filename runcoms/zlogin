@@ -14,7 +14,6 @@
   fi
 } &!
 
-<<<<<<< HEAD
 # Execute code only if STDERR is bound to a TTY.
 if [[ -o INTERACTIVE && -t 2 ]]; then
 
@@ -25,15 +24,3 @@ if [[ -o INTERACTIVE && -t 2 ]]; then
   fi
 
 fi >&2
-=======
-# Print a random, hopefully interesting, adage.
-if (( $+commands[fortune] )); then
-  if [[ -t 0 || -t 1 ]]; then
-    fortune -s
-    print
-  fi
-fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
->>>>>>> Customizations

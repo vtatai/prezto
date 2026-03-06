@@ -14,10 +14,47 @@ fi
 alias vi="nvim"
 alias vim="nvim"
 
+export EDITOR="vim"
+export VISUAL="$EDITOR"
+
+# Enable vi mode
+bindkey -v
+
+# But then re-enable search
+# Ctrl+R: reverse search
+bindkey '^R' history-incremental-search-backward
+
+# Ctrl+A: beginning of line
+bindkey '^A' beginning-of-line
+
+# Ctrl+E: end of line
+bindkey '^E' end-of-line
+
+# Ctrl+K: kill to end of line
+bindkey '^K' kill-line
+
+# Ctrl+U: kill to beginning of line
+bindkey '^U' backward-kill-line
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/helm@3/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
-export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Add this to ~/.zshrc
+export KUBECONFIG=$(atlas kitt context:create --pid=$$)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=/Users/vtatai/.tiup/bin:$HOME/.local/bin:$PATH
+
+# Source machine-specific settings if available
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

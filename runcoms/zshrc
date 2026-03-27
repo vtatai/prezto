@@ -14,6 +14,8 @@ fi
 alias vi="nvim"
 alias vim="nvim"
 
+alias ag="alias | grep"
+
 export EDITOR="vim"
 export VISUAL="$EDITOR"
 

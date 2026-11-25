@@ -52,8 +52,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=/Users/vtatai/.tiup/bin:$HOME/.local/bin:$PATH
+# function to nohup a process and redirect to tmp
+nohup_bg() {
+  local out="/tmp/nohup_$(date +%s).out"
+  nohup "$@" > "$out" 2>&1 &
+  echo "Output: $out (PID: $!)"
+}
 
 # Source machine-specific settings if available
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Set by Rovo agent to fix atlas CLI staffID mismatch (2026-08-12)
+export ATLAS_USER=vtatai
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
